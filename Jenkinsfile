@@ -2,8 +2,6 @@ def credential = 'github'
 def server = 'aimingds@103.127.97.24'
 def directory = '/home/aimingds/wayshub-frontend'
 def branch = 'main'
-def service = frontend
-def image =  alvindra/amanda
 
 pipeline {
     agent any 
@@ -12,7 +10,7 @@ pipeline {
 	    steps {
 		sshagent([credential]) {
 		   sh """ssh -o StrictHostKeyChecking=no ${server} << EOF
-		   docker compose down ${service}
+		   docker compose down frontend
                    cd ${directory} 
 		   git pull origin ${branch}
 		   exit
@@ -27,7 +25,7 @@ pipeline {
                 sshagent([credential]) {
                    sh """ssh -o StrictHostKeyChecking=no ${server} << EOF
                    cd ${directory}
-                   docker compose build ${service}
+                   docker compose build frontend
                    exit
                    EOF"""
 
