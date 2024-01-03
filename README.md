@@ -1,4 +1,8 @@
 Testing CI/CD
+```sh
+sh lolrandom.sh
+```
+
 
 # Getting Started with Create React App
 
